@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensaje de Amor</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8c8dc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        .envelope {
+            width: 200px;
+            height: 100px;
+            background: #d84315;
+            position: relative;
+            cursor: pointer;
+            margin: 0 auto;
+            transition: 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: black;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .envelope.clicked::before {
+            content: "Te Amo";
+        }
+        .envelope:not(.clicked)::before {
+            content: "Presiona Aquí";
+        }
+        .message {
+            display: none;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+            margin: 20px auto;
+            text-align: left;
+            color: #d84315;
+            font-weight: bold;
+        }
+        .message p {
+            margin: 10px 0;
+        }
+        .message p:first-child {
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.2em;
+        }
+        .message p:last-child {
+            text-align: right;
+            font-weight: bold;
+        }
+        .heart {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: red;
+            transform: rotate(45deg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        .heart:before, .heart:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: red;
+            border-radius: 50%;
+        }
+        .heart:before {
+            top: -25px;
+            left: 0;
+        }
+        .heart:after {
+            left: -25px;
+            top: 0;
+        }
+        @keyframes beat {
+            to {
+                transform: rotate(45deg) scale(1.2);
+            }
+        }
+        @keyframes move {
+            0% {
+                transform: translate(0, 0) rotate(45deg);
+            }
+            100% {
+                transform: translate(100vw, 100vh) rotate(45deg);
+            }
+        }
+        @media (max-width: 600px) {
+            .heart {
+                width: 30px;
+                height: 30px;
+                font-size: 0.6em;
+            }
+            .heart:before, .heart:after {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="envelope" id="envelope" onclick="showMessage()"></div>
+        <div class="message" id="message">
+            <p>Querida Daniela,</p>
+            <p>Desde el momento en que te conocí, supe que había algo especial en ti. Recuerdo con cariño los primeros dias, cuando apenas nos conocíamos y me hiciste renegar al demorarte en tu reunión. Aunque en ese momento sentí frustración, hoy miro hacia atrás y sonrío al recordar cómo todo comenzó.</p>
+            <p>A pesar de ese pequeño inconveniente, me di cuenta rápidamente de lo afortunado que soy al tenerte en mi vida. Tu presencia ha traído una luz y una alegría que nunca antes había experimentado. Cada día a tu lado ha sido una bendición y no puedo evitar sentirme agradecido por haberte conocido.</p>
+            <p>Gracias por ser tú, por cada risa, cada abrazo y cada momento compartido. Eres mi inspiración y mi amor, y no puedo imaginar mi vida sin ti. Agradezco al destino por haberte puesto en mi camino y por cada día que compartimos juntos.</p>
+            <p>Con todo mi amor,</p>
+            <p>Angello</p>
+        </div>
+    </div>
+    <script>
+        function showMessage() {
+            document.getElementById('message').style.display = 'block';
+            document.getElementById('envelope').classList.add('clicked');
+        }
+
+        function createHearts() {
+            for (let i = 0; i < 30; i++) {
+                let heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerText = 'A y D';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = Math.random() * 100 + 'vh';
+                document.body.appendChild(heart);
+                moveHeart(heart);
+            }
+        }
+
+        function moveHeart(heart) {
+            let x = Math.random() * (window.innerWidth - 50);
+            let y = Math.random() * (window.innerHeight - 50);
+            let dx = Math.random() * 4 - 2;
+            let dy = Math.random() * 4 - 2;
+
+            function animate() {
+                x += dx;
+                y += dy;
+
+                if (x <= 0 || x >= window.innerWidth - 50) {
+                    dx *= -1;
+                }
+                if (y <= 0 || y >= window.innerHeight - 50) {
+                    dy *= -1;
+                }
+
+                heart.style.left = x + 'px';
+                heart.style.top = y + 'px';
+
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        }
+
+        createHearts();
+    </script>
+</body>
+</html>
