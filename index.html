@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Mensaje de Amor</title>
     <style>
         body {
@@ -20,6 +20,8 @@
             text-align: center;
             position: relative;
             z-index: 2;
+            max-width: 100%;
+            padding: 10px;
         }
         .envelope {
             width: 200px;
@@ -107,7 +109,7 @@
                 transform: translate(0, 0) rotate(45deg);
             }
             100% {
-                transform: translate(100vw, 100vh) rotate(45deg);
+                transform: translate(calc(100vw - 50px), calc(100vh - 50px)) rotate(45deg);
             }
         }
         @media (max-width: 600px) {
@@ -120,6 +122,18 @@
                 width: 30px;
                 height: 30px;
             }
+            .container {
+                padding: 5px;
+            }
+            .envelope {
+                width: 150px;
+                height: 75px;
+                font-size: 1em;
+            }
+            .message {
+                padding: 15px;
+                font-size: 0.9em;
+            }
         }
     </style>
 </head>
@@ -128,7 +142,7 @@
         <div class="envelope" id="envelope" onclick="showMessage()"></div>
         <div class="message" id="message">
             <p>Querida Daniela,</p>
-            <p>Desde el momento en que te conocí, supe que había algo especial en ti. Recuerdo con cariño los primeros dias, cuando apenas nos conocíamos y me hiciste renegar al demorarte en tu reunión. Aunque en ese momento sentí frustración, hoy miro hacia atrás y sonrío al recordar cómo todo comenzó.</p>
+            <p>Desde el momento en que te conocí, supe que había algo especial en ti. Recuerdo con cariño esa primera semana, cuando apenas nos conocíamos y me hiciste renegar al demorarte en tu reunión. Aunque en ese momento sentí frustración, hoy miro hacia atrás y sonrío al recordar cómo todo comenzó.</p>
             <p>A pesar de ese pequeño inconveniente, me di cuenta rápidamente de lo afortunado que soy al tenerte en mi vida. Tu presencia ha traído una luz y una alegría que nunca antes había experimentado. Cada día a tu lado ha sido una bendición y no puedo evitar sentirme agradecido por haberte conocido.</p>
             <p>Gracias por ser tú, por cada risa, cada abrazo y cada momento compartido. Eres mi inspiración y mi amor, y no puedo imaginar mi vida sin ti. Agradezco al destino por haberte puesto en mi camino y por cada día que compartimos juntos.</p>
             <p>Con todo mi amor,</p>
